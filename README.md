@@ -1,7 +1,12 @@
 # TechnicaltestJCP2CALL
 
 Instrucciones para compilar y ejecutar el proyecto.
-
+1. Clonar o descargar el repositorio desde GitHub.
+2. Abrir Visual Studio.
+3. Hacer clic en "Abrir un proyecto o solución".
+4. Navegar a la carpeta del repositorio y seleccionar el archivo:
+   `TechnicaltestJCP2CALL.slnx`
+   
 Estructura de módulos y ejecución
 - El repositorio contiene tres módulos que corresponden a las secciones de la prueba.
 - Para ejecutar el `Módulo 1`:
