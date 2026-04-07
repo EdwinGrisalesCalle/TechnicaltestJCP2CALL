@@ -38,11 +38,34 @@ namespace product_manager_winforms.Presentation.Products
             presenter?.Save();
         }
         private void btnDelete_Click(object sender, EventArgs e)
-        {   
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text)
+                && string.IsNullOrWhiteSpace(txtPrice.Text)
+                && string.IsNullOrWhiteSpace(txtStock.Text))
+            {
+                MessageBox.Show(
+                    "No hay un elemento seleccionado para eliminar",
+                    "Atención",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
+
             if (dgvProducts.CurrentRow == null) return;
 
             var product = (Product)dgvProducts.CurrentRow.DataBoundItem;
-            presenter.Delete(product);
+            if (product == null) return;
+
+            var result = MessageBox.Show(
+                "¿Desea eliminar el producto seleccionado?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                presenter?.Delete(product);
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -68,7 +91,6 @@ namespace product_manager_winforms.Presentation.Products
             txtPrice.Text = product.Price.ToString();
             txtStock.Text = product.Stock.ToString();
 
-            //btnDelete.Enabled = true;
         }
 
         public void ShowMessage(string message)
@@ -82,6 +104,14 @@ namespace product_manager_winforms.Presentation.Products
 
             dgvProducts.DataSource = null;
             dgvProducts.DataSource = data;
+
+
+            if (dgvProducts.Columns.Contains("Name"))
+                dgvProducts.Columns["Name"].HeaderText = "Nombre";
+            if (dgvProducts.Columns.Contains("Price"))
+                dgvProducts.Columns["Price"].HeaderText = "Precio";
+            if (dgvProducts.Columns.Contains("Stock"))
+                dgvProducts.Columns["Stock"].HeaderText = "Stock";
 
             suppressSelectionChanged = false;
         }
