@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/module3/">
+    <File Path="PedidoService_legacy.cs" />
+  </Folder>
   <Project Path="module2/module2.csproj" Id="3eaa1559-bc4d-4334-8a40-86d752b46cff" />
   <Project Path="TechnicaltestJCP2CALL/module1.csproj" Id="65b9a2f7-c953-4895-8d12-2f9e796c653a" />
 </Solution>
